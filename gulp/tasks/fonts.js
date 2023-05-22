@@ -70,7 +70,8 @@ export const fontStyle = () => {
                     } else {
                         fontWeight = 400;
                     }
-                    fs.appendFile(fontsFiles, `@font-face {\n\tfont-family: ${fontName}; \n\tfont-display:swap;\n\tsrc: url(../fonts/${fontName}.woff) format("woff"); \n\tfont-weight: ${fontWeight}; \n\tfont-style: normal;\n}\r\n`, cb);
+                    // fs.appendFile(fontsFiles, `@font-face {\n\tfont-family: ${fontName}; \n\tfont-display:swap;\n\tsrc: url(../fonts/${fontFileName}.woff) format("woff"); \n\tfont-weight: ${fontWeight}; \n\tfont-style: normal;\n}\r\n`, cb);
+                    
                     newFileOnly = fontFileName;
                      
                 }
