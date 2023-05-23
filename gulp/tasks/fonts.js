@@ -2,7 +2,7 @@ import fs from 'fs';
 import fonter from "gulp-fonter";
 import ttfwoff2 from 'gulp-ttf2woff2';
 
-export const fonts = () => {
+export const font = () => {
     //Ишем файли шрифтов .otf
     return app.gulp.src(`${app.path.srcFolder}/fonts/*.otf`, {})
     .pipe(app.plugins.plumber(
@@ -70,6 +70,15 @@ export const fontStyle = () => {
                     } else {
                         fontWeight = 400;
                     }
+                    fs.appendFile(fontsFiles, 
+                            `@font-face {
+                             font-family: ${fontName};
+                             font-display: swap;
+                             src: url("../fonts/${fontFileName}.woff") format("woff"), url("../fonts/${fontFileName}.woff2) format(woff2);
+                             font-weight: ${fontWeight};
+                             font-style: normal; 
+                            }\r\n
+                        `, cb)
                     // fs.appendFile(fontsFiles, `@font-face {\n\tfont-family: ${fontName}; \n\tfont-display:swap;\n\tsrc: url(../fonts/${fontFileName}.woff) format("woff"); \n\tfont-weight: ${fontWeight}; \n\tfont-style: normal;\n}\r\n`, cb);
                     
                     newFileOnly = fontFileName;

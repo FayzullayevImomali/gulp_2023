@@ -23,10 +23,7 @@ import { server } from "./gulp/tasks/server.js";
 import { scss } from "./gulp/tasks/scss.js";
 import { js } from "./gulp/tasks/JavascriptTask.js";
 import {images} from "./gulp/tasks/images.js";
-import { fonts } from "./gulp/tasks/fonts.js";
-import { ttfToWoff } from "./gulp/tasks/fonts.js";
-
-
+import { font, ttfToWoff} from "./gulp/tasks/fonts.js";
 
 
 const watcher = function() {
@@ -38,7 +35,9 @@ const watcher = function() {
     //gulp.watch(path.watch.fonts, fonts);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss , js, images, fonts, ttfToWoff);
+const fontTask = gulp.series(font, ttfToWoff);
+
+const mainTasks = gulp.series(font, gulp.parallel(copy, html, scss , js, images));
 
 //Построение сценариев выполнения задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
